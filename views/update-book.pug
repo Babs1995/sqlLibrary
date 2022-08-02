@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 Book Info:
+
+  include form-error
+
+  form(method='post')
+    p
+      label(for='title') Title 
+      input( name='title' type='text' value=book.title id='title')
+    p
+      label(for='author') Author 
+      input( name='author' type='text' value=book.author id='author')
+    p
+      label(for='genre') Genre 
+      input( name='genre' type='text' value=book.genre id='genre')
+    p
+      label(for='year') Year 
+      input( name='year' type='text' value=book.year id='year')
+    p
+      input( type='submit'   value='Update Book')
+    p
+      a(class='button' href='/books') Cancel
+    
+  form(method='post' action=`/books/${book.id}/delete`)  
+    p 
+      input( type='submit' value='Delete Book')
