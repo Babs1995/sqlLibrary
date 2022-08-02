@@ -1,5 +1,46 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  span
+  div#options
+  <br>
+     h1(style='text-align: left') Books
+     
+
+  p
+    a(class="button" style='margin-left: 620px;' href=`/books/new`) Create New Book
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+    tbody
+      each book in books 
+        tr 
+          td 
+            a(href=`/books/${book.id}`)= book.title
+          td= book.author 
+          td= book.genre 
+          td= book.year
+    .searchbar
+      form#search-form(action="", method="post")
+        input( name='search' type='text' placeholder="Type a book..." id= search) 
+        input(style="display: flex" type='submit' value='Search')
+        - var n = 1;
+  div#page-buttons(style='margin-left: 730px;')
+      if pages
+          while n <= pages
+              if search
+                  form(action=`/books?page=${n}`, method="post")
+                      input(name="search", id="search", type="hidden", value=`${search}`)
+                      if page == n
+                          button.page-button.active(type="submit", value="Search")= n++
+                      else 
+                          button.page-button(type="submit", value="Search")= n++
+              else
+                  if page == n
+                      a.page-button.active(href=`/books?page=${n}`)= n++
+                  else
+                      a.page-button(href=`/books?page=${n}`)= n++
