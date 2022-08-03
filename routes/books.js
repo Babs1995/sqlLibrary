@@ -87,7 +87,7 @@ router.post(
 );
 
 router.get(
-  "/books/new-book",
+  "/books/new",
   asyncHandler(async (req, res) => {
     res.render("new-book", { book: {} });
   })
@@ -95,7 +95,7 @@ router.get(
 
 /* Posts a new book to the database */
 router.post(
-  "/books/new-book",
+  "/books/new",
   asyncHandler(async (req, res, next) => {
     let book;
     try {
@@ -119,8 +119,6 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      const err = new Error();
-      err.status = 404;
       res.render("page-not-found", { err });
     }
   })
