@@ -38,7 +38,7 @@ app.use('/', books);
 app.use((req, res) => {
   const err = new Error();
   err.status = 404;
-  err.message = "So sorry, this page does not exist!";
+  err.message = "Sorry, this page does not exist!";
   res.render('page-not-found', {err});
 
 })
