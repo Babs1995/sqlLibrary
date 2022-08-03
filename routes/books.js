@@ -119,7 +119,7 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      res.render("page-not-found", { err });
+      res.render("page-not-found", { title: "Page Not Found" });
     }
   })
 );
