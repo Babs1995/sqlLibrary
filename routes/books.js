@@ -114,18 +114,18 @@ router.post(
 
 router.get(
   "/books/:id",
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (err, req, res, next) => {
     const book = await Book.findByPk(req.params.id);
     if (book) {
       res.render("update-book", { book });
     } else {
-      throw new error("The app component has thrown an error!");
-      // const err = new Error();
-      // err.status = 404;
-      // res.render("page-not-found", { title: "Page Not Found" });
+      const err = new Error(404)
+      err.message = "Book not found"
+      next(err)
+   }
+
     }
-  })
-);
+  ));
 
 router.post(
   "/books/:id",
