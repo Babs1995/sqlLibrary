@@ -119,9 +119,10 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      const err = new Error();
-      err.status = 404;
-      res.render("page-not-found", { title: "Page Not Found" });
+      throw new error("The app component has thrown an error!");
+      // const err = new Error();
+      // err.status = 404;
+      // res.render("page-not-found", { title: "Page Not Found" });
     }
   })
 );
